@@ -1,5 +1,3 @@
-
-
 from classes_1 import *
 from classes_2 import *
 
@@ -42,7 +40,8 @@ def main ():
     5 - Show available pets
     6 - Shop stats
     7 - Filter pets by type
-    8 - Exit
+    8- Apply discount
+    9 - Exit
     """)
 
         choice = input("Choose: ")
@@ -127,6 +126,20 @@ def main ():
                 shop.filter_by_type(species)
 
             case "8":
+                pet_name = input("Enter pet name: ")
+                pet = shop.find_pet(pet_name)
+                if pet is None:
+                    print("Pet not found.")
+                else:
+                    try:
+                        discount = float(input("Enter discount percentage: "))
+                        pet.apply_discount(discount)
+                        print("Discount applied successfully!")
+                        print(f"New price: {pet.get_price()} SAR")
+                    except ValueError:
+                        print("Please enter a valid number.")
+
+            case "9":
 
                 print("Goodbye!")
                 break
